@@ -43,6 +43,7 @@ If I had more time, I would have tested the HTTP status codes returned by the AP
 
 The end to end tests can be found in `nestjs-trees-app/tests/app.e2e-spec.ts`.
 
+```
 📦nestjs-trees-app
  ┣ 📂src
  ┃ ┣ 📂trees
@@ -51,6 +52,8 @@ The end to end tests can be found in `nestjs-trees-app/tests/app.e2e-spec.ts`.
  ┣ 📂test
  ┃ ┣ 📜app.e2e-spec.ts
  ┃ ┗ 📜jest-e2e.json
+ 
+```
 
 ## HTTP Exception Filter
 
@@ -62,11 +65,12 @@ The class also adds support for logging of error info using NestJS `Logger`.
 
 If I had more time I would have explored using NestJS `Logger` further.
 
+```
 📦nestjs-trees-app
  ┣ 📂src
  ┃ ┣ 📂shared
  ┃ ┃ ┗ 📜http-exception-filter.ts
-
+```
 
 ## Installation
 
