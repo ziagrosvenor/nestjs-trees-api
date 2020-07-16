@@ -31,6 +31,43 @@ Other queries
 * Option to add total trees filter by startDate and grouped by varient to the response
 [http://localhost:3000/trees?totalTreesGroupedBy=varient&startDate=2020-06-01T09:05:39.511Z](http://localhost:3000/trees?totalTreesGroupedBy=varient&startDate=2020-06-01T09:05:39.511Z)
 
+## Test suites
+
+There are happy path unit tests for the tree controller. If I had more time in the tech test, then I would have added more unit tests to cover edge cases, such as returning an empty result set. I would have also explored using Faker JS to generate test data.
+
+The unit test can be found in `nestjs-trees-app/src/trees/tree.controller.spec.ts`.
+
+I also wrote a few end to end tests, including an test to check that the query param validation for `varient` will respond with a 400 status code on invalid input. 
+
+If I had more time, I would have tested the HTTP status codes returned by the API in error scenarios.
+
+The end to end tests can be found in `nestjs-trees-app/tests/app.e2e-spec.ts`.
+
+📦nestjs-trees-app
+ ┣ 📂src
+ ┃ ┣ 📂trees
+ ┃ ┃ ┣ 📜tree.controller.spec.ts
+ ┃ ┃ ┣ 📜tree.controller.ts
+ ┣ 📂test
+ ┃ ┣ 📜app.e2e-spec.ts
+ ┃ ┗ 📜jest-e2e.json
+
+## HTTP Exception Filter
+
+I read up on HTTP Exception Filters in the NestJS documentation, So I thought it would be worth implementing one to customise the HTTP error responses.
+
+The HTTP Exception Filter class in this repo adds additional metadata to the error response such as `timestamp`.
+
+The class also adds support for logging of error info using NestJS `Logger`.
+
+If I had more time I would have explored using NestJS `Logger` further.
+
+📦nestjs-trees-app
+ ┣ 📂src
+ ┃ ┣ 📂shared
+ ┃ ┃ ┗ 📜http-exception-filter.ts
+
+
 ## Installation
 
 ```bash
@@ -68,7 +105,7 @@ $ yarn test:cov
 
 * Use a database to access the data instead of the fixed JSON file data.
 
-* Some data formatting functions for the response in the trees controller. This should be moved to a data formatting module or moved down to the trees service.
+* Some data formatting functions for the response in the tree controller. This should be moved to a data formatting module or moved down to the trees service.
 
 * Remove use of `any` type in `getTotalTreesGroupedByKey` function
 
