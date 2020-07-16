@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { TreesController } from './trees.controller';
 import { TreesService } from './trees.service';
+import { TreesQueryDto } from './dto';
 
 jest.mock(
   './data/trees.json',
@@ -11,6 +12,13 @@ jest.mock(
       createdAt: '2020-01-01T02:42:02.663Z',
       projectId: 723,
       varient: 'referral',
+    },
+    {
+      id: 3,
+      value: 8,
+      createdAt: '2019-07-07T01:30:01.308Z',
+      projectId: 891,
+      varient: 'normal',
     },
   ],
   { virtual: true },
@@ -30,7 +38,8 @@ describe('TreesController', () => {
 
   describe('root', () => {
     it('should return a list of trees', async () => {
-      const trees = await treesController.getTrees();
+      const query = new TreesQueryDto();
+      const trees = await treesController.getTrees(query);
       return expect(trees).toEqual([
         {
           createdAt: '2020-01-01T02:42:02.663Z',
@@ -38,6 +47,28 @@ describe('TreesController', () => {
           projectId: 723,
           value: 37,
           varient: 'referral',
+        },
+        {
+          id: 3,
+          value: 8,
+          createdAt: '2019-07-07T01:30:01.308Z',
+          projectId: 891,
+          varient: 'normal',
+        },
+      ]);
+    });
+
+    it('should return a list of trees with varient="normal"', async () => {
+      const query = new TreesQueryDto();
+      query.varient = 'normal';
+      const trees = await treesController.getTrees(query);
+      return expect(trees).toEqual([
+        {
+          id: 3,
+          value: 8,
+          createdAt: '2019-07-07T01:30:01.308Z',
+          projectId: 891,
+          varient: 'normal',
         },
       ]);
     });
