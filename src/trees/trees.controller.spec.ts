@@ -40,37 +40,43 @@ describe('TreesController', () => {
     it('should return a list of trees', async () => {
       const query = new TreesQueryDto();
       const trees = await treesController.getTrees(query);
-      return expect(trees).toEqual([
-        {
-          createdAt: '2020-01-01T02:42:02.663Z',
-          id: 0,
-          projectId: 723,
-          value: 37,
-          varient: 'referral',
-        },
-        {
-          id: 3,
-          value: 8,
-          createdAt: '2019-07-07T01:30:01.308Z',
-          projectId: 891,
-          varient: 'normal',
-        },
-      ]);
+      return expect(trees).toEqual({
+        results: [
+          {
+            createdAt: '2020-01-01T02:42:02.663Z',
+            id: 0,
+            projectId: 723,
+            value: 37,
+            varient: 'referral',
+          },
+          {
+            id: 3,
+            value: 8,
+            createdAt: '2019-07-07T01:30:01.308Z',
+            projectId: 891,
+            varient: 'normal',
+          },
+        ],
+        totalTrees: 45,
+      });
     });
 
     it('should return a list of trees with varient="normal"', async () => {
       const query = new TreesQueryDto();
       query.varient = 'normal';
       const trees = await treesController.getTrees(query);
-      return expect(trees).toEqual([
-        {
-          id: 3,
-          value: 8,
-          createdAt: '2019-07-07T01:30:01.308Z',
-          projectId: 891,
-          varient: 'normal',
-        },
-      ]);
+      return expect(trees).toEqual({
+        results: [
+          {
+            id: 3,
+            value: 8,
+            createdAt: '2019-07-07T01:30:01.308Z',
+            projectId: 891,
+            varient: 'normal',
+          },
+        ],
+        totalTrees: 8,
+      });
     });
   });
 });
