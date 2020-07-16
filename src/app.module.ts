@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { APP_FILTER } from '@nestjs/core';
-import { TreesModule } from './trees';
+import { TreeModule } from './trees';
 import { HttpExceptionFilter } from './shared/http-exception-filter';
 
 @Module({
-  imports: [TreesModule],
+  imports: [TreeModule],
   controllers: [],
   providers: [
     {

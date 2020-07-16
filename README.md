@@ -1,4 +1,4 @@
-# Trees Querying API
+# Tree Querying API
 
 This API is built with Nest JS. It was bootstrapped using the Nest JS CLI.
 

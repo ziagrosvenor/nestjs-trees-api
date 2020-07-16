@@ -1,4 +1,4 @@
-export interface Trees {
+export interface Tree {
   id: number;
   value: number;
   createdAt: string;

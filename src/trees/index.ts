@@ -1,1 +1,1 @@
-export * from './trees.module';
+export * from './tree.module';

@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { TreesController } from './trees.controller';
-import { TreesService } from './trees.service';
-import { TreesQueryDto } from './dto';
+import { TreeController } from './tree.controller';
+import { TreeService } from './tree.service';
+import { TreeListQueryDto } from './dto';
 
 jest.mock(
   './data/trees.json',
@@ -24,21 +24,21 @@ jest.mock(
   { virtual: true },
 );
 
-describe('TreesController', () => {
-  let treesController: TreesController;
+describe('TreeController', () => {
+  let treesController: TreeController;
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
-      controllers: [TreesController],
-      providers: [TreesService],
+      controllers: [TreeController],
+      providers: [TreeService],
     }).compile();
 
-    treesController = app.get<TreesController>(TreesController);
+    treesController = app.get<TreeController>(TreeController);
   });
 
   describe('root', () => {
     it('should return a list of trees', async () => {
-      const query = new TreesQueryDto();
+      const query = new TreeListQueryDto();
       const trees = await treesController.getTrees(query);
       return expect(trees).toEqual({
         results: [
@@ -62,7 +62,7 @@ describe('TreesController', () => {
     });
 
     it('should return a list of trees with varient=normal', async () => {
-      const query = new TreesQueryDto();
+      const query = new TreeListQueryDto();
       query.varient = 'normal';
       const trees = await treesController.getTrees(query);
       return expect(trees).toEqual({
@@ -80,7 +80,7 @@ describe('TreesController', () => {
     });
 
     it('should return a list of trees within dateRange', async () => {
-      const query = new TreesQueryDto();
+      const query = new TreeListQueryDto();
       query.startDate = '2019-07-06T01:30:01.308Z';
       query.endDate = '2019-07-08T01:30:01.308Z';
       const trees = await treesController.getTrees(query);
@@ -99,7 +99,7 @@ describe('TreesController', () => {
     });
 
     it('should return a list of trees same or after startDate', async () => {
-      const query = new TreesQueryDto();
+      const query = new TreeListQueryDto();
       query.startDate = '2020-01-01T02:42:02.663Z';
       const trees = await treesController.getTrees(query);
       return expect(trees).toEqual({
@@ -117,7 +117,7 @@ describe('TreesController', () => {
     });
 
     it('should return a list of trees same or before endDate', async () => {
-      const query = new TreesQueryDto();
+      const query = new TreeListQueryDto();
       query.endDate = '2020-01-01T02:42:02.663Z';
       const trees = await treesController.getTrees(query);
       return expect(trees).toEqual({
@@ -159,7 +159,7 @@ describe('TreesController', () => {
     ])(
       'should return additionally return treeTotals grouped by %s',
       async (groupedByKey, expected) => {
-        const query = new TreesQueryDto();
+        const query = new TreeListQueryDto();
         query.totalTreesGroupedBy = groupedByKey;
         const trees = await treesController.getTrees(query);
         return expect(trees).toEqual({

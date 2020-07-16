@@ -1,1 +1,1 @@
-export * from './trees-query.dto';
+export * from './tree-list-query.dto';

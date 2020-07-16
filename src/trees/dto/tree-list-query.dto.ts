@@ -1,6 +1,6 @@
-import { IsEnum, IsOptional, IsDateString, IsBoolean } from 'class-validator';
+import { IsEnum, IsOptional, IsDateString } from 'class-validator';
 
-export class TreesQueryDto {
+export class TreeListQueryDto {
   @IsOptional()
   @IsEnum(['referral', 'dividend', 'normal'])
   varient: string;

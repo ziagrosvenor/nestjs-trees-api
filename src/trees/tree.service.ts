@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { Trees } from './trees.interface';
+import { Tree } from './tree.interface';
 import * as trees from './data/trees.json';
-import { TreesQueryDto } from './dto';
+import { TreeListQueryDto } from './dto';
 import * as moment from 'moment';
 
 @Injectable()
-export class TreesService {
-  trees: Trees[] = trees;
+export class TreeService {
+  trees: Tree[] = trees;
 
-  async findAll(query: TreesQueryDto): Promise<Trees[]> {
+  async findAll(query: TreeListQueryDto): Promise<Tree[]> {
     return this.trees
       .filter(tree => {
         if (query.varient) {
