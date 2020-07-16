@@ -7,7 +7,7 @@ export class TreesController {
   constructor(private readonly treesService: TreesService) {}
 
   @Get()
-  getHello(): Promise<Trees[]> {
+  getTrees(): Promise<Trees[]> {
     return this.treesService.findAll();
   }
 }
