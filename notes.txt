@@ -1,1 +1,3 @@
 Query Trees within date range - http://localhost:3000/trees?startDate=2020-02-17T16:31:33.369Z&endDate=2020-06-19T09:05:39.511Z
+
+Grouped by project ID - http://localhost:3000/trees?varient=normal&startDate=2020-02-17T16:31:33.369Z&endDate=2020-06-19T09:05:39.511Z&totalTreesGroupedBy=projectId

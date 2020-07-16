@@ -61,7 +61,7 @@ describe('TreesController', () => {
       });
     });
 
-    it('should return a list of trees with varient="normal"', async () => {
+    it('should return a list of trees with varient=normal', async () => {
       const query = new TreesQueryDto();
       query.varient = 'normal';
       const trees = await treesController.getTrees(query);
