@@ -140,5 +140,49 @@ describe('TreesController', () => {
         totalTrees: 45,
       });
     });
+
+    it.each([
+      [
+        'projectId',
+        {
+          '723': 37,
+          '891': 8,
+        },
+      ],
+      [
+        'varient',
+        {
+          normal: 8,
+          referral: 37,
+        },
+      ],
+    ])(
+      'should return additionally return treeTotals grouped by %s',
+      async (groupedByKey, expected) => {
+        const query = new TreesQueryDto();
+        query.totalTreesGroupedBy = groupedByKey;
+        const trees = await treesController.getTrees(query);
+        return expect(trees).toEqual({
+          results: [
+            {
+              id: 0,
+              value: 37,
+              createdAt: '2020-01-01T02:42:02.663Z',
+              projectId: 723,
+              varient: 'referral',
+            },
+            {
+              id: 3,
+              value: 8,
+              createdAt: '2019-07-07T01:30:01.308Z',
+              projectId: 891,
+              varient: 'normal',
+            },
+          ],
+          totalTreesGrouped: expected,
+          totalTrees: 45,
+        });
+      },
+    );
   });
 });

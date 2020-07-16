@@ -1,4 +1,4 @@
-import { IsEnum, IsOptional, IsDateString } from 'class-validator';
+import { IsEnum, IsOptional, IsDateString, IsBoolean } from 'class-validator';
 
 export class TreesQueryDto {
   @IsOptional()
@@ -10,4 +10,7 @@ export class TreesQueryDto {
   @IsOptional()
   @IsDateString()
   endDate: string;
+  @IsOptional()
+  @IsEnum(['projectId', 'varient'])
+  totalTreesGroupedBy: string;
 }
